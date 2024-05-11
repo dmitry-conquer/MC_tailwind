@@ -4,6 +4,8 @@ import postcss from "gulp-postcss";
 import autoprefixer from "autoprefixer";
 import cssnano from "cssnano";
 import tailwindcss from "tailwindcss";
+import sortMediaQueries from 'postcss-sort-media-queries';
+
 
 const sass = gulpSass(dartSass);
 
@@ -19,6 +21,9 @@ export const style = () => {
     .pipe(
       postcss([
         tailwindcss("./tailwind.config.js"),
+        sortMediaQueries({
+          sort: 'desktop-first',
+        }),
         autoprefixer({
           grid: true,
           overrideBrowserslist: "last 2 versions",
